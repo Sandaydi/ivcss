@@ -1,14 +1,14 @@
 {
   "name": "ivcss",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "让sass书写更简单的小型函数库。",
   "main": "index.js",
   "scripts": {
 		"start": "node-sass --watch exmple/test.scss exmple/test.css --output-style expanded"
   },
   "keywords": [],
   "author": "sandaydi",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "node-sass": "^4.13.1"
   }
