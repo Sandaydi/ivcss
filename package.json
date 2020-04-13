@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "让sass书写更简单的小型函数库。",
   "scripts": {
-    "start": "node-sass --watch exmple/test.scss exmple/test.css --output-style expanded"
+    "start": "node-sass --watch test/test.scss test/test.css --output-style expanded"
   },
 	"repository": {
 	  "type": "git",
