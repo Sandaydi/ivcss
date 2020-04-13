@@ -1,0 +1,98 @@
+@import '../../_tool';
+
+@import '_con';
+@import '_cus';
+@import '_oth';
+// 自定义映射-即需要手动传值
+$map-emmet-con-admin: $map-emmet-con-data;
+
+// 其他类型 - 无需传值
+$map-emmet-other: $map-emmet-oth-data;
+// 内置映射：即参数固定 - 无需传值
+// -常用
+$map-emmet-cus-often: ivcss_fn_del_mergeMultMap(
+	$map-position,
+	$map-float,
+	$map-clear,
+	$map-display,
+	$map-visibility,
+	$map-overflow,
+	$map-cursor,
+	$map-boxSizing,
+	$map-fontWeight,
+	$map-fontStyle,
+	$map-verticalAlign,
+	$map-textAlign,
+	$map-textAlignLast,
+	$map-textDecoration,
+	$map-backgroundRepeat,
+	$map-backgroundClip,
+	$map-backgroundOrigin,
+	$map-backgroundSize,
+	$map-borderColor,
+	$map-borderStyle,
+	$map-alignContent,
+	$map-alignItems,
+	$map-alignSelf,
+	$map-flexDirection,
+	$map-flexWrap,
+	$map-justifyContent
+);
+
+// -其它
+$map-emmet-cus-other-1: ivcss_fn_del_mergeMultMap(
+	$map-clip,
+	$map-resize,
+	$map-fontVariant,
+	$map-fontFamily,
+	$map-fontEffect,
+	$map-fontEmphasizePosition,
+	$map-fontEmphasizeStyle,
+	$map-fontSmooth,
+	$map-fontStretch,
+	$map-textEmphasis,
+	$map-textHeight,
+	$map-textJustify,
+	$map-textOutline,
+	$map-textReplace,
+	$map-textTransform,
+	$map-textWrap,
+	$map-textShadow,
+	$map-whiteSpace,
+	$map-wordBreak,
+	$map-wordWrap,
+	$map-backgroundAttachment,
+	$map-backgroundBreak,
+	$map-content,
+	$map-quotes
+);
+$map-emmet-cus-other-2: ivcss_fn_del_mergeMultMap(
+	$map-outlineWidth,
+	$map-outlineStyle,
+	$map-outline-color,
+	$map-tableLayout,
+	$map-captionSide,
+	$map-emptyCells,
+	$map-borderCollapse,
+	$map-borderFit,
+	$map-listStylePosition,
+	$map-listStyleType,
+	$map-pageBreakBefore,
+	$map-pageBreakInside,
+	$map-pageBreakAfter,
+	$map-animationDirection,
+	$map-animationFillMode,
+	$map-animationIterationCount,
+	$map-animationPlayState,
+	$map-animationTimingFunction,
+	$map-orientation,
+	$map-textOverflow,
+	$map-writingMode
+);
+// // -所有
+$map-emmet-cus-all: ivcss_fn_del_mergeMultMap($map-emmet-cus-often, $map-emmet-cus-other-1, $map-emmet-cus-other-2);
+// $map-emmet-cus-all: join($map-emmet-cus-often, $map-emmet-cus-other-1);
+// $map-emmet-cus-all: join($map-emmet-cus-all, $map-emmet-cus-other-2);
+
+// $map-emmet-cus-all: $map-position;
+

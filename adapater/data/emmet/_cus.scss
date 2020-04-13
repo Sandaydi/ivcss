@@ -1,0 +1,1128 @@
+// Visual Formatting
+// /* ===[position]===*/
+$map-position: (
+	po: (
+		prop: position,
+		defa: relative,
+		child: (
+			r: relative,
+			a: absolute,
+			s: static,
+			f: fixed
+		)
+	)
+);
+
+// /* ===[float]===*/
+$map-float: (
+	f: (
+		prop: float,
+		defa: left,
+		child: (
+			n: none,
+			l: left,
+			r: right,
+			ln: none,
+			ll: left,
+			lr: right
+		)
+	)
+);
+
+// /* ===[clear]===*/
+$map-clear: (
+	cl: (
+		prop: clear,
+		defa: both,
+		child: (
+			n: none,
+			l: left,
+			r: right,
+			b: both
+		)
+	)
+);
+
+// /* ===[display]===*/
+$map-display: (
+	d: (
+		prop: display,
+		defa: block,
+		child: (
+			n: none,
+			b: block,
+			f: flex,
+			if: inline-flex,
+			i: inline,
+			ib: inline-block,
+			li: list-item,
+			ri: run-in,
+			cp: compact,
+			tb: table,
+			itb: inline-table,
+			tbcp: table-caption,
+			tbcl: table-column,
+			tbclg: table-column-group,
+			tbhg: table-header-group,
+			tbfg: table-footer-group,
+			tbr: table-row,
+			tbrg: table-row-group,
+			tbc: table-cell,
+			rb: ruby,
+			rbb: ruby-base,
+			rbt: ruby-text,
+			rbtg: ruby-text-group
+		)
+	)
+);
+
+// /* ===[float]===*/
+$map-visibility: (
+	v: (
+		prop: visibility,
+		defa: hidden,
+		child: (
+			v: visible,
+			h: hidden,
+			c: collapse
+		)
+	)
+);
+
+// /* ===[overflow]===*/
+$map-overflow: (
+	ov: (
+		prop: overflow,
+		defa: hidden,
+		child: (
+			v: visible,
+			h: hidden,
+			s: scroll,
+			a: auto
+		)
+	),
+	ovx: (
+		prop: overflow-x,
+		defa: hidden,
+		child: (
+			v: visible,
+			h: hidden,
+			s: scroll,
+			a: auto
+		)
+	),
+	ovy: (
+		prop: overflow-y,
+		defa: hidden,
+		child: (
+			v: visible,
+			h: hidden,
+			s: scroll,
+			a: auto
+		)
+	),
+	ovs: (
+		prop: overflow-style,
+		defa: scrollbar,
+		child: (
+			a: auto,
+			s: scrollbar,
+			p: panner,
+			m: move,
+			mq: marquee
+		)
+	)
+);
+
+// /* ===[clip]===*/
+$map-clip: (
+	cp: (
+		prop: clip,
+		defa: auto,
+		child: (
+			r: 'rect(top right bottom, left)',
+			a: auto
+		)
+	)
+);
+
+// /* ===[resize]===*/
+$map-resize: (
+	rs: (
+		prop: resize,
+		defa: auto,
+		child: (
+			n: none,
+			b: both,
+			h: horizontal,
+			v: vertical,
+			z: auto,
+			zn: none,
+			zb: both,
+			zh: horizontal,
+			zv: vertical
+		)
+	)
+);
+
+// /* ===[cursor]===*/
+$map-cursor: (
+	cu: (
+		prop: cursor,
+		defa: pointer,
+		child: (
+			a: auto,
+			d: default,
+			c: crosshair,
+			ha: hand,
+			he: help,
+			m: move,
+			p: pointer,
+			t: text,
+			ra: auto,
+			rd: default,
+			rc: crosshair,
+			rha: hand,
+			rhe: help,
+			rm: move,
+			rp: pointer,
+			rt: text
+		)
+	)
+);
+
+// /* ===[box-sizing]===*/
+$map-boxSizing: (
+	bx: (
+		prop: box-sizing,
+		defa: border-box,
+		child: (
+			cb: content-box,
+			bb: border-box,
+			z: border-box,
+			zcb: content-box,
+			zbb: border-box
+		)
+	),
+	bz: (
+		prop: box-sizing,
+		defa: border-box,
+		child: (
+			cb: content-box,
+			bb: border-box,
+			z: border-box,
+			zcb: content-box,
+			zbb: border-box
+		)
+	)
+);
+
+
+// Font
+// /* ===[font-weight]===*/
+$map-fontWeight: (
+	fw: (
+		prop: font-weight,
+		defa: normal,
+		child: (
+			n: normal,
+			b: bold,
+			br: bolder,
+			l: lighter,
+			lr: lighter
+		)
+	)
+);
+
+// /* ===[font-style]===*/
+$map-fontStyle: (
+	fw: (
+		prop: font-style,
+		defa: italic,
+		child: (
+			n: normal,
+			i: italic,
+			o: oblique,
+		)
+	)
+);
+
+// /* ===[font-variant]===*/
+$map-fontVariant: (
+	fv: (
+		prop: font-variant,
+		defa: normal,
+		child: (
+			n: normal,
+			sc: small-caps
+		)
+	)
+);
+
+// /* ===[font-family]===*/
+$map-fontFamily: (
+	ff: (
+		prop: font-family,
+		defa: serif,
+		child: (
+			s: serif,
+			ss: sans-serif,
+			c: cursive,
+			f: fantasy,
+			m: monospace,
+			a: 'Arial, "Helvetica Neue", Helvetica, sans-serif',
+			t: 'Times New Roman", Times, Baskerville, Georgia, serif',
+			v: 'Verdana, Geneva, sans-serif'
+		)
+	)
+);
+// /* ===[font-effect]===*/
+$map-fontEffect: (
+	fef: (
+		prop: font-effect,
+		defa: none,
+		child: (
+			n: none,
+			eg: engrave,
+			eb: emboss,
+			o: outline
+		)
+	)
+);
+
+// /* ===[font-emphasize-position]===*/
+$map-fontEmphasizePosition: (
+	femp: (
+		prop: font-emphasize-position,
+		defa: before,
+		child: (
+			b: before,
+			a: after
+		)
+	)
+);
+// /* ===[font-emphasize-style]===*/
+$map-fontEmphasizeStyle: (
+	fems: (
+		prop: font-emphasize-style,
+		defa: none,
+		child: (
+			n: none,
+			ac: accent,
+			dt: dot,
+			c: circle,
+			ds: disc,
+		)
+	)
+);
+
+// /* ===[font-smooth]===*/
+$map-fontSmooth: (
+	fsm: (
+		prop: font-smooth,
+		defa: auto,
+		child: (
+			a: auto,
+			n: never,
+			aw: always,
+		)
+	)
+);
+
+// /* ===[font-stretch]===*/
+$map-fontStretch: (
+	fst: (
+		prop: font-stretch,
+		defa: normal,
+		child: (
+			n: normal,
+			uc: ultra-condensed,
+			ec: extra-condensed,
+			c: condensed,
+			sc: semi-condensed,
+			se: semi-expanded,
+			e: expanded,
+			ee: extra-expanded,
+			ue: ultra-expanded
+		)
+	)
+);
+
+// Text
+// /* ===[vertical-align]===*/
+$map-verticalAlign: (
+	va: (
+		prop: vertical-align,
+		defa: top,
+		child: (
+			sup: super,
+			t: top,
+			tt: text-top,
+			m: middle,
+			bl: baseline,
+			b: bottom,
+			tb: text-bottom,
+			sub: sub
+		)
+	)
+);
+
+// /* ===[text-align]===*/
+$map-textAlign: (
+	ta: (
+		prop: text-align,
+		defa: left,
+		child: (
+			r: right,
+			j: justify,
+			c: center,
+			l: left
+		)
+	)
+);
+
+// /* ===[text-align-last]===*/
+$map-textAlignLast: (
+	tal: (
+		prop: text-align-last,
+		defa: right,
+		child: (
+			l: left,
+			a: auto,
+			r: right,
+			c: center,
+			j: justify
+		)
+	)
+);
+
+// /* ===[text-decoration]===*/
+$map-textDecoration: (
+	td: (
+		prop: text-decoration,
+		defa: none,
+		child: (
+			n: none,
+			u: underline,
+			o: overline,
+			l: line-through
+		)
+	)
+);
+
+// /* ===[text-emphasis]===*/
+$map-textEmphasis: (
+	te: (
+		prop: text-emphasis,
+		defa: none,
+		child: (
+			n: none,
+			ac: accent,
+			dt: dot,
+			c: circle,
+			ds: disc,
+			b: before,
+			a: after
+		)
+	)
+);
+
+// /* ===[text-height]===*/
+$map-textHeight: (
+	th: (
+		prop: text-height,
+		defa: auto,
+		child: (
+			a: auto,
+			f: font-size,
+			t: text-size,
+			m: max-size
+		)
+	)
+);
+
+// /* ===[text-justify]===*/
+$map-textJustify: (
+	tj: (
+		prop: text-justify,
+		defa: auto,
+		child: (
+			a: auto,
+			iw: inter-word,
+			ii: inter-ideograph,
+			d: distribute,
+			tc: inter-cluster,
+			ic: inter-cluster,
+			k: kashida,
+			t: tibetan
+		)
+	)
+);
+// /* ===[text-outline]===*/
+$map-textOutline: (
+	to: (
+		prop: text-outline,
+		defa: none,
+		child: (
+			n: none,
+			'o+': '0 0 #000'
+		)
+	)
+);
+// /* ===[text-replace]===*/
+$map-textReplace:  (
+	tr: (
+		prop: text-replace,
+		defa: none,
+		child: (
+			n: none
+		)
+	)
+);
+
+// /* ===[text-transform]===*/
+$map-textTransform: (
+	tt: (
+		prop: text-transform,
+		defa: uppercase,
+		child: (
+			n: none,
+			c: capitalize,
+			u: uppercase,
+			l: lowercase
+		)
+	)
+);
+// /* ===[text-wrap]===*/
+$map-textWrap: (
+	tw: (
+		prop: text-wrap,
+		defa: normal,
+		child: (
+			n: normal,
+			no: none,
+			u: unrestricted,
+			s: suppress
+		)
+	)
+);
+
+// /* ===[text-shadow]===*/
+$map-textShadow: (
+	tsh: (
+		prop: text-shadow,
+		defa: '0 0 0 #000',
+		child: (
+			n: none
+		)
+	)
+);
+
+// /* ===[white-space]===*/
+$map-whiteSpace: (
+	whs: (
+		prop: white-space,
+		defa: normal,
+		child: (
+			p: pre,
+			nw: nowrap,
+			pw: pre-wrap,
+			pl: pre-line
+		)
+	)
+);
+
+// /* ===[white-space-collapse]===*/
+$map-whiteSpace: (
+	whsc: (
+		prop: white-space-collapse,
+		defa: normal,
+		child: (
+			n: normal,
+			k: keep-all,
+			l: loose,
+			ba: break-all,
+			bs: break-strict
+		)
+	)
+);
+
+// /* ===[word-break]===*/
+$map-wordBreak: (
+	wob: (
+		prop: word-break,
+		defa: normal,
+		child: (
+			n: normal,
+			k: keep-all,
+			ba: break-all
+		)
+	)
+);
+
+// /* ===[word-wrap]===*/
+$map-wordWrap: (
+	wow: (
+		prop: word-wrap,
+		defa: normal,
+		child: (
+			nm: normal,
+			n: none,
+			u: unrestricted,
+			s: suppress,
+			b: break-word
+		)
+	)
+);
+
+// Background
+// /* ===[background-repeat]===*/
+$map-backgroundRepeat: (
+	bgr: (
+		prop: background-repeat,
+		defa: no-repeat,
+		child: (
+			n: no-repeat,
+			x: repeat-x,
+			y: repeat-y,
+			so: space,
+			rd: round
+		)
+	)
+);
+
+// /* ===[background-attachment]===*/
+$map-backgroundAttachment: (
+	bga: (
+		prop: background-attachment,
+		defa: fixed,
+		child: (
+			f: fixed,
+			s: scroll
+		)
+	)
+);
+
+// /* ===[background-break]===*/
+$map-backgroundBreak: (
+	bgbk: (
+		prop: background-break,
+		defa: bounding-box,
+		child: (
+			bb: bounding-box,
+			eb: each-box,
+			c: continuous,
+		)
+	)
+);
+
+// /* ===[background-clip]===*/
+$map-backgroundClip: (
+	bgcp: (
+		prop: background-clip,
+		defa: padding-box,
+		child: (
+			bb: border-box,
+			pb: padding-box,
+			cb: content-box,
+			nc: no-clip
+		)
+	)
+);
+
+// /* ===[background-origin]===*/
+$map-backgroundOrigin: (
+	bgo: (
+		prop: background-origin,
+		defa: padding-box,
+		child: (
+			pb: padding-box,
+			bb: border-box,
+			cb: content-box
+		)
+	)
+);
+
+// /* ===[background-size]===*/
+$map-backgroundSize: (
+	bgsz: (
+		prop: background-size,
+		defa: auto,
+		child: (
+			a: auto,
+			ct: contain,
+			cv: cover
+		)
+	)
+);
+
+// Generated content
+// /* ===[content]===*/
+$map-content: (
+	ct: (
+		prop: content,
+		defa: normal,
+		child: (
+			n: normal,
+			oq: open-quote,
+			noq: no-open-quote,
+			cq: close-quote,
+			ncq: no-close-quote
+		)
+	),
+	cnt: (
+		prop: content,
+		defa: normal,
+		child: (
+			n: normal,
+			oq: open-quote,
+			noq: no-open-quote,
+			cq: close-quote,
+			ncq: no-close-quote
+		)
+	)
+);
+
+
+// /* ===[quotes]===*/
+$map-quotes: (
+	q: (
+		prop: quotes,
+		defa: none,
+		child: (
+			n: none,
+			ru: "'\00AB' '\00BB' '\201E' '\201C'",
+			en: "'\201C' '\201D' '\2018' '\2019'"
+		)
+	)
+);
+// Outline
+// /* ===[Name]===*/
+$map-outlineWidth: (
+	olw: (
+		prop: outline-width,
+		defa: thin,
+		child: (
+			tn: thin,
+			m: medium,
+			tc: thick
+		)
+	)
+);
+
+// /* ===[outline-style]===*/
+$map-outlineStyle: (
+	ols: (
+		prop: outline-style,
+		defa: double,
+		child: (
+			n: none,
+			dt:	dotted,
+			ds:	dashed,
+			s:	solid,
+			d:	double,
+			g:	groove,
+			r:	ridge,
+			i:	inset,
+			o:	outset
+		)
+	)
+);
+
+// /* ===[outlineColor]===*/
+$map-outline-color: (
+	olc: (
+		prop: outline-color,
+		defa: '#000',
+		child: (
+			outline-color: invert
+		)
+	)
+);
+
+// Tables
+// /* ===[table-layout]===*/
+$map-tableLayout: (
+	tbl: (
+		prop: table-layout,
+		defa: auto,
+		child: (
+			a: auto,
+			f: fixed
+		)
+	)
+);
+
+// /* ===[caption-side]===*/
+$map-captionSide: (
+	cps: (
+		prop: caption-side,
+		defa: top,
+		child: (
+			t: top,
+			b: bottom
+		)
+	)
+);
+
+
+// /* ===[empty-cells]===*/
+$map-emptyCells: (
+	ec: (
+		prop: empty-cells,
+		defa: show,
+		child: (
+			s: show,
+			h: hide
+		)
+	)
+);
+
+// /* ===[border-collapse]===*/
+$map-borderCollapse: (
+	bdcl: (
+		prop: border-collapse,
+		defa: collapse,
+		child: (
+			c: collapse,
+			s: separate,
+		)
+	)
+);
+
+// /* ===[border-color]===*/
+$map-borderColor: (
+	bdc: (
+		prop: border-color,
+		defa: '#000',
+		child: (
+			t: transparent
+		)
+	)
+);
+
+// /* ===[border-fit]===*/
+$map-borderFit: (
+	bdf: (
+		prop: border-fit,
+		defa: repeat,
+		child: (
+			c: clip,
+			r: repeat,
+			sc: scale,
+			ow: overwrite,
+			s: stretch,
+			of: overflow,
+			sp: space,
+		)
+	)
+);
+// /* ===[border-style]===*/
+$map-borderStyle: (
+	bds: (
+		prop: border-style,
+		defa: none,
+		child: (
+			n: none,
+			h: hidden,
+			dt: dotted,
+			ds: dashed,
+			s: solid,
+			db: double,
+			dtds: 'dot-dash',
+			dtdtds: 'dot-dot-dash',
+			w: 'wave',
+			g: groove,
+			r: ridge,
+			i: inset,
+			o: outset
+		)
+	)
+);
+
+// Lists
+// /* ===[list-style-position]===*/
+$map-listStylePosition: (
+	lisp: (
+		prop: list-style-position,
+		defa: inside,
+		child: (
+			o: outside,
+			i: inside
+		)
+	)
+);
+
+// /* ===[list-style-type]===*/
+$map-listStyleType: (
+	list: (
+		prop: list-style-type,
+		defa: none,
+		child: (
+			n: none,
+			d: disc,
+			c: circle,
+			s: square,
+			dc: decimal,
+			dclz: 'decimal-leading-zero',
+			lr: 'lower-roman',
+			ur: 'upper-roman',
+		)
+	)
+);
+
+// Print
+// /* ===[page-break-before]===*/
+$map-pageBreakBefore: (
+	pgbb: (
+		prop: page-break-before,
+		defa: always,
+		child: (
+			au: auto,
+			a: always,
+			al: always,
+			l: left,
+			r: right
+		)
+	)
+);
+// /* ===[page-break-inside]===*/
+$map-pageBreakInside: (
+	pgbi: (
+		prop: page-break-inside,
+		defa: avoid,
+		child: (
+			a: avoid,
+			au: auto,
+			av: avoid
+		)
+	)
+);
+// /* ===[page-break-after]===*/
+$map-pageBreakAfter: (
+	pgba: (
+		prop: page-break-after,
+		defa: always,
+		child: (
+			au: auto,
+			a: always,
+			al: always,
+			l: left,
+			r: right
+		)
+	)
+);
+
+// /* ===[page-break-after]===*/
+$map-alignContent: (
+	ac: (
+		prop: align-content,
+		defa: center,
+		child: (
+			c: center,
+			fe: flex-end,
+			fs: flex-start,
+			s: stretch,
+			sa: space-around,
+			sb: space-between
+		)
+	)
+);
+// /* ===[align-items]===*/
+$map-alignItems: (
+	ai: (
+		prop: align-items,
+		defa: center,
+		child: (
+			b: baseline,
+			c: center,
+			fe: flex-end,
+			fs: flex-start,
+			s: stretch
+		)
+	)
+);
+
+// /* ===[animation-direction]===*/
+$map-animationDirection: (
+	animdir:(
+		prop: animation-direction,
+		defa: normal,
+		child: (
+			a: alternate,
+			ar: alternate-reverse,
+			n: normal,
+			r: reverse
+		)
+	)
+);
+
+// /* ===[animation-fill-mode]===*/
+$map-animationFillMode: (
+	animfm: (
+		prop: animation-fill-mode,
+		defa: both,
+		child: (
+			b: backwards,
+			bt: both,
+			bh: both,
+			f: forwards
+		)
+	)
+);
+// /* ===[animation-iteration-count]===*/
+$map-animationIterationCount: (
+	animic:(
+		prop: animation-iteration-count,
+		defa: 1,
+		child: (
+			i: infinite
+		)
+	)
+);
+// /* ===[animation-play-state]===*/
+$map-animationPlayState: (
+	animps:(
+		prop: animation-play-state,
+		defa: running,
+		child: (
+			p: paused,
+			r: running
+		)
+	)
+);
+
+// /* ===[animation-timing-function]===*/
+$map-animationTimingFunction: (
+	animtf:(
+		prop: animation-timing-function,
+		defa: linear,
+		child: (
+			cb: 'cubic-bezier(0.1, 0.7, 1.0, 0.1)',
+			e: ease,
+			ei: ease-in,
+			eio: ease-in-out,
+			eo: ease-out,
+			l: linear
+		)
+	)
+);
+// /* ===[align-self]===*/
+$map-alignSelf: (
+	as:(
+		prop: align-self,
+		defa: auto,
+		child: (
+			a: auto,
+			b: baseline,
+			c: center,
+			fe: flex-end,
+			fs: flex-start,
+			s: stretch
+		)
+	)
+);
+
+// /* ===[flex-direction]===*/
+$map-flexDirection: (
+	fxd:(
+		prop: flex-direction,
+		defa: column,
+		child: (
+			c: column,
+			cr: column-reverse,
+			r: row,
+			rr: row-reverse
+		)
+	)
+);
+// /* ===[flex-wrap]===*/
+$map-flexWrap: (
+	fxw:(
+		prop: flex-wrap,
+		defa: nowrap,
+		child: (
+			n: nowrap,
+			w: wrap,
+			wr: wrap-reverse
+		)
+	)
+);
+// /* ===[justify-content]===*/
+$map-justifyContent: (
+	jc:(
+		prop: justify-content,
+		defa: center,
+		child: (
+			c: center,
+			fe: flex-end,
+			fs: flex-start,
+			sa: space-around,
+			sb: space-between
+		)
+	)
+);
+// /* ===[orientation]===*/
+$map-orientation: (
+	ori:(
+		prop: orientation,
+		defa: landscape,
+		child: (
+			l:landscape,
+			p:portrait
+		)
+	)
+);
+
+// /* ===[text-overflow]===*/
+$map-textOverflow: (
+	txov: (
+		prop:text-overflow,
+		defa: ellipsis,
+		child: (
+			c: clip,
+			e: ellipsis
+		)
+	),
+	tov:(
+		prop:text-overflow,
+		defa: ellipsis,
+		child: (
+			c: clip,
+			e: ellipsis
+		)
+	),
+);
+
+// /* ===[-webkit-font-smoothing]===*/
+$map-webkitFontSmoothing: (
+	wfsm:(
+		prop: '-webkit-font-smoothing',
+		defa: antialiased,
+		child: (
+			a: antialiased,
+			n: none,
+			s: subpixel-antialiased,
+			sa: subpixel-antialiased
+		)
+	)
+);
+
+// /* ===[writing-mode]===*/
+$map-writingMode: (
+	wm:(
+		prop: writing-mode,
+		defa: lr-tb,
+		child: (
+			btl: bt-lr,
+			btr: bt-rl,
+			lrb: lr-bt,
+			lrt: lr-tb,
+			rlb: rl-bt,
+			rlt: rl-tb,
+			tbl: tb-lr,
+			tbr: tb-rl
+		)
+	)
+);
+

@@ -1,0 +1,363 @@
+///**【#fn01】
+// * @method ivcss_fn_get_mapKeysMaxLength($map)
+// * @param {map} $map 要处理的映射
+// * @return {number} 返回map中的最长key值的key长度
+// */
+@function ivcss_fn_get_mapKeysMaxLength($map) {
+	//判断传入的map是否合法
+	@if not isMapNotEmpty($map) {
+		@error "你需要传入一个map类型的值且不为空的map值";
+	}
+	$mapList: map-keys($map);  //此时含所有的mapkeys键名
+	$num: 0;
+	@for $i from 1 through length($mapList) {
+		$num: max($num, str-length(nth($mapList, $i)));
+	};
+	@return $num;
+}
+
+///**【#fn02】
+// *@method ivcss_fn_del_trim($str)
+// *@param {string} $str 要处理的字符串
+// *@return {number} 返回map中的最长key值的key长度
+@function ivcss_fn_del_trim($str) {
+	@if(type-of($str) != string){
+		$str: quote($str);
+	}
+	$i: str-length($str);
+	@while $i > 0 {
+		$i: $i - 1;
+		@if str-slice($str, 1, 1) == ' '{
+			$str: str-slice($str, 2);
+		}
+		@if str-slice($str, str-length($str), str-length($str)) == ' ' {
+			$str: str-slice($str, 1, str-length($str) - 1);
+		}
+	}
+	@return $str;
+}
+
+///**【#fn03】
+// * @method ivcss_fn_del_cutStr 裁切字符串工具
+// * @param {string} $str 要裁切的字符串
+// * @param {number} $idx 第一个裁切的位置
+// * @param {number} $num 裁切几个
+// * @return {map} 返回裁切后含左右两边字符串的映射
+// */
+@function ivcss_fn_del_cutStr($str, $idx, $num){
+	$strMap: (
+		left: str-slice($str, 1, $idx - 1),
+		right: str-slice($str, $idx + $num)
+	);
+	@return $strMap;
+}
+
+///** 【#fn04】
+// * @method ivcss_fn_del_mergeMultMap 合并多个映射
+// * @param {map} $params... 多个映射
+// * @return {map} 返回合并后的映射
+// */
+@function ivcss_fn_del_mergeMultMap($params...) {
+	$mapArr: ();
+	@each $param in $params {
+		$mapArr: map-merge($param, $mapArr);
+	};
+	@return $mapArr;
+}
+
+///**【#fn05】
+// * @method ivcss_fn_get_mulMap 多映射操作
+// * @param {arglist:any} $e... 多值
+// * @return {any} 视情况而定
+// */
+// 【!04-09】优化问题存留：改成第一个参数必填
+@function ivcss_fn_get_mulMap($e...) {
+	$result: nth($e, 1);
+	$keyOrGet: nth($e, length($e));
+	$len: if($keyOrGet!='', length($e)-1, length($e));
+	@for $i from 2 to  $len{
+		@if(type-of(nth($e, $i)) == map) {
+			$result: map-get(nth($e, $i), $result);
+		} @else {
+			$result: map-get($result, nth($e, $i));
+		} 
+	}
+	$val: nth($e, $len);
+	@if($keyOrGet == 'get') {
+		@if(type-of($val) == map) {
+			$result: map-get($val, $result)			
+		}@else{
+			$result: map-get($result, $val)
+		}
+	}@else if($keyOrGet == 'has'){
+		@if(type-of($val) == map and $result != null) {
+			$result: map-has-key($val, $result)			
+		}@else{
+			$result: map-has-key($result, $val)
+		}
+	}
+	@return $result;
+}
+
+///**【#fn06】
+// * @method ivcss_fn_deleteIcon 删除某些字符标识
+// * @param {string} 要被处理的字段
+// * @icon... {arglist:amy} 可1个或多个字符串
+// * @return {string} 处理后的字符串
+// */
+@function ivcss_fn_del_deleteIcon($param, $icon...){
+	@each $i in $icon {
+		$param: unquote($param);
+		$flag: str-index($param, $i);
+		@while if($flag,true,false) {
+			$l: str-slice($param, str-index($param, $i) + 1);
+			$r: str-slice($param,0, str-index($param, $i)-1);
+			$param: #{$l + $r};
+			$flag: if(str-index($param, $i),true, false);
+		};
+	}
+	@return $param;
+}
+
+///**【#fn07】
+//判断一个值是否存在map的key中，有则返回那个参数
+@function ivcss_fn_tof_findValInMap($map, $val) {
+	@if(map-has-key($map, $val)) {
+		@return (true, map-get($map, $val));
+	}
+	@return (false, 1);
+}
+
+///**【#fn08】
+///**判断是否存在某个值
+// * $param {string}  传入的对象
+// * $value {string| number...}  传入需查找是否存在的值，可多个
+// */
+@function ivcss_fn_tof_isHasValue($param, $value) {
+	// 判断是否含有数字
+	// content: type-of($param);
+	@for $i from 0 through 9 {
+		$i: $i + '';
+		@if(type-of(str-index($param, $i)) == number) {
+			@return true;
+		}
+	}
+	$ifHas: false;
+	@each $v in $value {
+		$ifHas: if(str-index($param, $v) , true, false);
+		@if($ifHas) {
+			@return $ifHas;
+		}
+	}
+	@return $ifHas;
+};
+
+///**【#fn09】
+// * 设置样式
+// * $m1：{string} 必填 - 映射
+// */
+@function ivcss_fn_set_conStyle($m1, $v1:prop, $v2: defa, $m2:$m1){
+	$styleMap: (
+		cssStyle: (
+			_prop: map-get($m1, $v1),
+			_style: map-get($m2, $v2)
+		)
+	);
+	@return $styleMap;
+};
+
+///**【#fn10】
+// 判断是否有某个值
+//<相关函数：#fn05>
+@function ivcss_fn_tof_conHasGetKey($paramA, $paramB, $methodA, $methodB) {
+	@if ivcss_fn_get_mulMap($paramA, $paramB, $methodA) {
+		$mapVal: ivcss_fn_get_mulMap($paramA, $paramB, $methodB);
+	}
+	@return ($resultMap, $mapVal);
+}
+///**【#fn11】
+//<相关函数：#fn05、#fn03>
+// 裁切返回左右两边字符串
+@function ivcss_fn_del_conCutPara($param, $index) {
+	$cutPara: ivcss_fn_del_cutStr($param, $index, 0);
+	$_txt_l: ivcss_fn_get_mulMap($cutPara, left, '');
+	$_txt_r: ivcss_fn_get_mulMap($cutPara, right, '');
+	// 左1，右
+	@return ($_txt_l, $_txt_r);
+}
+
+//======================
+// 以下为字符串转数值逻辑
+///**【#fn12】
+// 将字符串分割组成一个列表
+// $sort：0为正序，1为倒序
+@function ivcss_fn_del_strToListAndSort($str, $sort:0) {
+	$list: ();
+	$len: str-length($str);
+	@if $sort == 0 {
+		@for $i from 1 through $len {
+			$list: append($list, str-slice($str, $i, $i));
+		}
+	} @else {
+		@while $len > 0 {
+			$list: append($list, str-slice($str, $len, $len));
+			$len: $len - 1;
+		}
+	}
+	@return $list;
+}
+
+///**【#fn13】
+// 去除列表中的某一项
+// 相关函数：<#fn12>
+@function ivcss_fn_del_removeListItem($list, $index){
+	$str: '';
+	@for $i from 1 through length($list) {
+		@if($i != $index) {
+			$str: $str + nth($list, $i);
+		}
+	}
+	@return ivcss_fn_del_strToListAndSort($str, 0);
+}
+
+///**【#fn14】
+// 将字符串列表转换为数值列表
+@function ivcss_fn_del_strlistToNumlist($list) {
+	@for $i from 1 through length($list) {
+		@for $num from 0 through 9{
+			// @error '这是' $num $len;
+			@if(quote($num) == nth($list, $i)) {
+				$list: set-nth($list, $i , $num);
+			} 
+		}
+	}
+	@return $list;
+}
+
+///**【#fn15】
+// 将字符串转换成数字类型
+// #fn12 fn13
+@function ivcss_fn_del_strToNum($str) {
+	// 定义返回值
+	$resNum: 0;
+	// 将字符串分割后存放到列表，按倒序的方式放入
+	$list: ivcss_fn_del_strToListAndSort($str, 1);	
+	// 如果是负数的情况
+	$neg: 1;
+	// 因为是倒序，所以如果有，则负号在最后面
+	// @if(nth())
+	@if index($list, '-') {
+		// $list: set-nth($list, index($list, '-'), null);
+		$neg: -1;
+		$list: ivcss_fn_del_removeListItem($list, index($list, '-'));
+	}
+	// 如果是有百分号的情况
+	$per: 1;
+	@if index($list, '%') {
+		$per: 100;
+		$list: ivcss_fn_del_removeListItem($list, index($list, '%'));
+	}
+	// 将所有数转换为数值
+	$list: ivcss_fn_del_strlistToNumlist($list);
+	
+	// 判断数值是否合法
+	$testList: ivcss_fn_del_strlistToNumlist(ivcss_fn_del_removeListItem($list, index($list, '.')));
+	// @error $testList;
+	@each $v in $testList {
+		@if type-of($v) != number {
+			// @error "不是合法的数值，请重新输入";
+			@return false;
+		}
+	}
+
+	// 存放小数点左右两边最大索引值
+	$listLen: length($list);
+	$hasDot: if(index($list, '.'), true, false);
+	$dotIdx: if($hasDot, index($list, '.'), 0);
+	$x: $dotIdx - 1;
+	$y: $dotIdx + 1;
+	// @error $x '+' $list '+' $y;
+	// 如果是有小数点的情况
+	@if $x > -1 {
+		// 小数点右边
+		@for $i from 1 through $x {
+			$temp: nth($list, $i);
+			$z: $x - $i + 1;
+			@while $z > 0 {
+				$z: $z - 1;
+				$temp: $temp*0.1;
+			}
+			$resNum: $resNum + $temp;
+		}
+		// 小数点左边
+		// 个位情况
+		$resNum: $resNum + nth($list, $y);
+		// @error $resNum;
+	}
+	// 如果是整数
+	@if $x = -1 {
+		$resNum: $resNum + nth($list, $y);
+	}
+	// 如果数值小于1的情况
+	@if $listLen > $y {
+		@for $i from $listLen through ($y + 1) {
+			$t: $i - $y;
+			$temp: nth($list, $i);
+			@while $t > 0 {
+				$t: $t - 1;
+				$temp: $temp * 10;
+			}
+			$resNum: $resNum + $temp;
+		}
+	}
+	
+	// 百分比和负数
+	// 负数
+	$resNum: $resNum * $neg;
+	@if($per == 100) {
+		$resNum: $resNum / $per;
+		$resNum: percentage($resNum);
+	}
+	@return $resNum;
+}
+
+///**【#fn16】
+// 将字符串按某个特定元素转换为列表
+@function ivcss_fn_strToListByIcon($str, $icon) {
+	$newList: ();
+	// 存在'-'的索引
+	$icon-idx: str-index($str, '-');
+	@if $icon-idx == null {
+		$newList: append($newList, $str);
+		@return $newList;
+	}
+	@while $icon-idx != null {
+		$strMap: ivcss_fn_del_cutStr($str, $icon-idx, 1);
+		$icon-idx: str-index(map-get($strMap, right), '-');
+		$newList: append($newList, map-get($strMap, left));
+		// 当为最后一位
+		$flag: if($icon-idx == null, true, false);
+		@if $flag {
+			$newList: append($newList, map-get($strMap, right));
+		}
+		$str: map-get($strMap, right);
+	}
+	@return $newList;	
+}
+
+
+
+///**【#fn24】
+@function ivcss_fn_del_units($val, $units) {
+	// 判断一个字符是否合法
+	$flag: ivcss_fn_del_strToNum($val);
+	$hasPerIcon: if(str-index($val, "%"), false, true);
+	
+	@if $flag and $hasPerIcon{
+		@if $flag != 0 {
+			$val: $val + $units;
+		}
+	} 
+	@return $val;
+}
+

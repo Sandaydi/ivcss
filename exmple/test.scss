@@ -1,0 +1,37 @@
+@import '../ivcss';
+
+// 嗨，这篇测试将告诉你如何去使用ivcss
+
+// @include ivcss()进行调用
+.test-1{
+	// 如果我们要定义宽度20像素时，我们可以这样写
+	// 默认是px，所以如果不写入单位，也会自动给你添加
+	@include ivcss(w20px, w20);
+	
+	// 若是需要输入百分比的形式
+	// 因为sass@include传值有规范，所以含百分号需要添加双引号
+	// 所以这里推荐你直接加p，会自动处理成百分比的形式
+	@include ivcss(w20p, 'w20%');	
+	
+	// 传颜色
+	@include ivcss(c#fff, bgc#000, bg-rgba(0,0,0,0.1));
+	
+	// 传背景图片
+	@include ivcss('bg`url("test.png") no-repeat top center`')
+	
+	// 传边距ivcss还支持多种方式传值哦~
+	@include ivcss(p20, p20-30-40 , ma-20-10p-30rem);
+	
+	// 除了自定义的参数，emmet表里绝大部分的缩写都支持哦~
+	@include ivcss(pos, poa, db, ovh, txov);	
+	
+	// 除此之外，ivcss还提供一些其它特殊的值
+	// xy + t/b/r/l 会返回四个范围的auto值
+	@include ivcss(xyt, xyb);
+	
+	// 还有还有，也允许混写形式哦
+	@include ivcss('[.box]', m0a, ha);
+}
+
+@include ivcss('[div .test-2]', ha);
+

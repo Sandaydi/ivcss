@@ -1,0 +1,38 @@
+@import '_tool';
+
+// 自定义
+@function ivcss_query_contain($param, $mapArr, $resultMap) {
+	$param: unquote($param);
+	// 找出m-label键名的最长位
+	// fn01
+	$num: ivcss_fn_get_mapKeysMaxLength($mapArr);
+	$has: false;
+	$num: min($num, str-length($param));
+	$value: '';
+	// 3
+	@while $num>0 {
+		$value: str-slice($param, 1, $num);
+		@if(map-has-key($mapArr, $value)) {
+			$has: true;
+			$num: 0;
+		}
+		$num: $num - 1;
+	}
+	// 处理返回值
+	@if not ($has){
+		$resultMap: map-merge($resultMap, (isFind: 0));
+	} @else {
+		// #fn06
+		$param: ivcss_fn_del_deleteIcon($param, '`');
+		// $param: fn_deleteIcon($param, '`', "'",'"');
+		$resultMap: (
+			isFind: 2,
+			cssStyle: (
+				_prop: map-get($mapArr, $value),
+				_style: str-slice($param, str-length($value) + 1 )
+			)
+		);
+	}
+	@return $resultMap;
+}
+

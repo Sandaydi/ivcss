@@ -1,0 +1,94 @@
+@import '_tool';
+@import '_fn_cus';
+@import '_fn_con';
+@import '_fn_oth';
+@import '_config';
+
+///**【#fn17】
+//  * ivcss_put_core 核心函数
+//  * @param {Object} $value
+//  * 
+//  */
+@function ivcss_put_core($value) {
+	$resultMap: (
+		isFind: 0,
+		cssStyle: (
+			_prop: null,
+			_style: null
+		)
+	);
+	// 当出现以下值时，证明是自定义传值
+	$value: quote($value);
+	$specialValueList: ('-', 'url', '(', ')', '`', "'", '"', ' ', '#', 'rgb');
+	$isCon: ivcss_fn_tof_isHasValue($value, $specialValueList);
+	@if map-has-key(ivcss_get_mapData(3), $value) {
+		$resultMap: ivcss_query_other($value, ivcss_get_mapData(3), $resultMap);
+		@return $resultMap;
+	} @else if  $isCon {
+		$resultMap: ivcss_query_contain($value, ivcss_get_mapData(2), $resultMap);
+		@return $resultMap;
+	} @else {
+		$resultMap: ivcss_query_customize($value, ivcss_get_mapData(1), $resultMap);
+		$style: ivcss_fn_get_mulMap($resultMap, cssStyle, _style, 'get');
+		$prop: ivcss_fn_get_mulMap($resultMap, cssStyle, _prop, 'get');
+		@if type-of($style) == number or type-of($style) == number{
+			$resultMap: map-merge($resultMap, (isFind: 0));
+		}
+		@return $resultMap;
+	}
+	@return $resultMap;
+}
+
+// ==========================================
+// 删除后返回结果
+///**【#fn18】
+@function ivcss_del_result($map, $para) {
+	// fn05
+	$val: ivcss_fn_get_mulMap($map, cssStyle, $para, 'get');
+	@if type-of($val) == string {
+		$val: unquote($val);
+	}
+	// 去左右空格并返回
+	// fn02
+	@return ivcss_fn_del_trim($val);
+}
+
+// ==========================================
+// 处理连续值参数
+///**【#fn19】
+// 如pd50-20-30 => padding: 50px 20px 30px
+@function ivcss_del_continuousValue($str) {
+	$units: $DEFAULT-UNITS;
+	// #fn16
+	$list: ivcss_fn_strToListByIcon($str, '-');
+	// 判断是否需要加单位
+	$newStr: '';
+	@for $i from 1 through length($list) {
+		$newVal: ivcss_fn_del_units(nth($list, $i), $units);
+		// 判断是否需要加%
+		$stl: str-length($newVal);
+		@if str-slice($newVal, $stl, $stl) == 'p' {
+			$newVal: str-slice($newVal, 1, $stl - 1) + '%';
+		}
+		// 判断是否加auto
+		@if str-slice($newVal, $stl, $stl) == 'a' {
+			$newVal: $newVal + 'uto';
+		}
+		// $list: set-nth($list, $i, $newVal);
+		$newStr: $newStr + ' ' + $newVal;
+	}
+	// fn02
+	@return ivcss_fn_del_trim(unquote($newStr));
+}
+///**【#fn20】
+// ==========================================
+// 获得map数据
+@function ivcss_get_mapData($num){
+	$mapData: $MAP-EMMET-CUS;
+	@if $num == 3 {
+		$mapData: $MAP-EMMET-OTHER;
+	} @else if $num == 2 {
+		$mapData: $MAP-EMMET-CON;
+	}
+	@return $mapData;
+}

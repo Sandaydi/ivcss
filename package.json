@@ -1,0 +1,15 @@
+{
+  "name": "ivcss",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+		"start": "node-sass --watch exmple/test.scss exmple/test.css --output-style expanded"
+  },
+  "keywords": [],
+  "author": "sandaydi",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^4.13.1"
+  }
+}

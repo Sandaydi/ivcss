@@ -1,0 +1,37 @@
+@import 'data/_core_data';
+
+// /**
+//  * $MAP-EMMET-CUS 内置映射
+//  * 可选值 
+//  * 	$map-emmet-cus-often
+//  * 	$map-emmet-cus-other
+//  * 	$map-emmet-cus-all
+// */
+$MAP-EMMET-CUS: $map-emmet-cus-all;
+// /**
+//  * $MAP-EMMET-CUS 自定义映射
+//  * 可选值 
+//  * 	$map-emmet-con-data
+// */
+// - 后续添加用户自定义版
+$MAP-EMMET-CON: $map-emmet-con-admin;
+// /**
+//  * $MAP-EMMET-CUS 其它类型
+//  * 可选值 
+//  * 	$map-emmet-con-data
+// */
+// - 后续添加用户自定义版
+$MAP-EMMET-OTHER: $map-emmet-other;
+
+///**
+// * 需要自动判断是否有单位的属性列表
+// */
+$ADD-UNITS-PROP-List: (margin, width, height, padding);
+
+///**
+// * 允许同时设置多个方向的值
+// */
+$ALLOW-MUL-VAULE-List: (margin, padding);
+
+// 默认加单位
+$DEFAULT-UNITS: 'px';

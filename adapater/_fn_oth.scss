@@ -1,0 +1,19 @@
+@import '_tool';
+
+// 其它
+// ivcss_fn_del_cutStr
+@function ivcss_query_other($param, $mapArr, $resultMap) {
+	$param: unquote($param);
+	$str: map-get($mapArr, $param);
+	$idx: str-index($str, ":");
+	$mapStye: ivcss_fn_del_cutStr($str, $idx, 1);
+	$resultMap: (
+		isFind: 3,
+		cssStyle: (
+			_prop: map-get($mapStye, left),
+			_style: map-get($mapStye, right)
+		)
+	);	
+	@return $resultMap;
+}
+

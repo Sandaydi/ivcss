@@ -1,0 +1,50 @@
+@import '_tool';
+
+// 【#fn21】
+// 内置
+@function ivcss_query_customize($param, $mapArr, $resultMap) {
+	//ivcss_fn_get_mapKeysMaxLength【fn01】
+	$num: min(ivcss_fn_get_mapKeysMaxLength($mapArr), str-length($param));
+	// #fn07
+	$fvm: ivcss_fn_tof_findValInMap($mapArr, $param);
+	@if (nth($fvm, 1)) {
+		$resultMap: (
+			isFind: 2,
+			cssStyle: (
+				_prop: map-get(nth($fvm, 2), prop),
+				_style: map-get(nth($fvm, 2), defa)
+			)
+		);
+		@return $resultMap;
+	} @else {		
+		@while $num > 0 {
+			// #fn11
+			$cutDataMap: ivcss_fn_del_conCutPara($param, $num);
+			$num: $num - 1;
+			$flag: if(map-has-key($mapArr, nth($cutDataMap, 1)), true, false);
+			
+			// $mapChild: map-get($mapList, 'child');
+			$mapList: map-get($mapArr, nth($cutDataMap, 1));
+			
+			@if $flag {
+				// #fn07
+				$fvm: ivcss_fn_tof_findValInMap(map-get($mapList, 'child'), nth($cutDataMap, 2));
+				$resultMap: (
+					isFind: 2,
+					cssStyle: (
+						_prop: map-get($mapList, prop),
+						_style: nth($fvm, 2)
+					)
+				);
+				@return $resultMap;
+			} 
+			// 判断是否取不到值
+			@if $num == 1 {
+				@return map-merge(
+					$resultMap,
+					(isFind: 0)
+				);
+			}
+		}
+	}
+}
