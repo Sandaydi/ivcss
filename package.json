@@ -1,7 +1,7 @@
 {
   "name": "ivcss",
-  "version": "0.0.1",
-  "description": "让sass书写更简单的小型函数库。",
+  "version": "0.0.2",
+  "description": "让sass书写更简单的小型函数库。Writing scss code more ease",
   "scripts": {
     "start": "node-sass --watch test/test.scss test/test.css --output-style expanded"
   },

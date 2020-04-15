@@ -1,5 +1,5 @@
 @import 'data/_core_data';
-
+@import '../ivcss_config';
 // /**
 //  * $MAP-EMMET-CUS 内置映射
 //  * 可选值 
@@ -7,7 +7,7 @@
 //  * 	$map-emmet-cus-other
 //  * 	$map-emmet-cus-all
 // */
-$MAP-EMMET-CUS: $map-emmet-cus-all;
+$MAP-EMMET-CUS: $map-emmet-cus-all !default;
 // /**
 //  * $MAP-EMMET-CUS 自定义映射
 //  * 可选值 
@@ -21,17 +21,26 @@ $MAP-EMMET-CON: $map-emmet-con-admin;
 //  * 	$map-emmet-con-data
 // */
 // - 后续添加用户自定义版
-$MAP-EMMET-OTHER: $map-emmet-other;
+$MAP-EMMET-OTHER: $map-emmet-other !default;
 
 ///**
 // * 需要自动判断是否有单位的属性列表
 // */
-$ADD-UNITS-PROP-List: (margin, width, height, padding);
+$ADD-UNITS-PROP-List: (margin, width, height, padding, font-size, border, border-radius) !default;
 
 ///**
 // * 允许同时设置多个方向的值
 // */
-$ALLOW-MUL-VAULE-List: (margin, padding);
+$ALLOW-MUL-VAULE-List: (margin, padding, border, border-radius) !default;
 
 // 默认加单位
-$DEFAULT-UNITS: 'px';
+$DEFAULT-UNITS: 'px' !default;
+
+
+$MAP-EXTEND-CLASS: (
+	reset: 'ivcss-reset'
+);
+
+
+
+
