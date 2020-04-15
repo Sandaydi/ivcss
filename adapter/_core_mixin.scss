@@ -6,6 +6,7 @@ $units-list: $ADD-UNITS-PROP-List;
 $units: $DEFAULT-UNITS;
 $allow-mulv-list: $ALLOW-MUL-VAULE-List;
 
+
 // ivcss查找器
 @mixin ivcss($params...){
 	// 判断第一位是否有中括号
@@ -13,7 +14,15 @@ $allow-mulv-list: $ALLOW-MUL-VAULE-List;
 	$getFirst: nth($params, 1);
 	$start: 1;
 	$allStyleList: ();
-	
+	$isHasExtend: false;
+	$extendClass: ();
+	$resultMap: (
+		isFind: 0,
+		cssStyle: (
+			_prop: null,
+			_style: null
+		)
+	);
 	@if(type-of($getFirst) == list) {
 		$getFirst: nth($getFirst, 1) + nth($getFirst, 2);
 	}
@@ -29,62 +38,96 @@ $allow-mulv-list: $ALLOW-MUL-VAULE-List;
 		$value: nth($params, $index);		
 		@if(type-of($value) == list) {
 			$value: nth($value, 1) + nth($value, 2);
-		}		
+		}
 		// 修正传入特殊符号而又没加括号,导致sass编译为list类型的错误,如bg#fff
 		// @if(type-of($value) != string) {}
-		
-		$resultMap: ivcss_put_core($value);
-		
-		// 错误输出
-		$flag: map-get($resultMap, isFind);
-		@if $flag == 0 {
-			$resultMap: (
-				isFind: 0,
-				cssStyle: (
-					_prop: '[!]msg',
-					_style: "[ivcss error]not find the word"
+		@if map-has-key($MAP-EXTEND-CLASS, $value) {
+			$isHasExtend: true;
+			$extendClass: append($extendClass, map-get($MAP-EXTEND-CLASS, $value));
+			// $extendClass: map-merge($extendClass, (
+			// 	val: $value,
+			// 	use: false
+			// );
+			// @error $extendClass;
+		} @else {
+			$resultMap: ivcss_put_core($value);
+			// 错误输出
+			$flag: map-get($resultMap, isFind);
+			@if $flag == 0 {
+				$resultMap: (
+					isFind: 0,
+					cssStyle: (
+						_prop: '[!]msg',
+						_style: "[ivcss error]not find the word"
+					)
 				)
-			)
-		};
-		$prop: ivcss_del_result($resultMap, _prop);
-		
-		$style: ivcss_del_result($resultMap, _style);
-		
-		@if index($units-list, $prop) != null {
-			$style: ivcss_fn_del_units($style, $units);
-			// 若是h30p情况，将其转换为h30%
-			$stl: str-length($style);
-			@if str-slice($style, $stl, $stl) == 'p' {
-				$style: str-slice($style, 1, $stl - 1) + '%';
 			}
-			// 判断是否加auto
-			@if str-slice($style, $stl, $stl) == 'a' {
-				$style: $style + 'uto';
-			}			
+			$prop: ivcss_del_result($resultMap, _prop);
+			
+			$style: ivcss_del_result($resultMap, _style);
+			
+			@if index($units-list, $prop) != null {
+				$style: ivcss_fn_del_units($style, $units);
+				// 若是h30p情况，将其转换为h30%
+				$stl: str-length($style);
+				@if str-slice($style, $stl, $stl) == 'p' {
+					$style: str-slice($style, 1, $stl - 1) + '%';
+				}
+				// 判断是否加auto
+				@if str-slice($style, $stl, $stl) == 'a' {
+					$style: $style + 'uto';
+				}			
+			}
+			// 判断是否存在rgb
+			@if str-index($style, '-rg') {
+				$style: ivcss_fn_del_deleteIcon($style, '-');
+			}
+			// 判断是否是允许多值列表
+			// $allow-mulv-list
+			@if index($allow-mulv-list, $prop) != null {
+				// #fn19
+				$style: ivcss_del_continuousValue($style);
+			}
+			// 将所有值输出
+			$allStyleList: append($allStyleList, ($prop, $style));		
 		}
-		// 判断是否存在rgb
-		@if str-index($style, '-rg') {
-			$style: ivcss_fn_del_deleteIcon($style, '-');
-		}
-		// 判断是否是允许多值列表
-		// $allow-mulv-list
-		@if index($allow-mulv-list, $prop) != null {
-			// #fn19
-			$style: ivcss_del_continuousValue($style);
-		}
-		// 将所有值输出
-		$allStyleList: append($allStyleList, ($prop, $style));
 	}
+	// @error $isExtend;
 	// 判断外层有没有$label
+	
 	@if $label {
 		#{$label} {
+			@if $isHasExtend {
+				@each $val in $extendClass {
+					@extend %#{$val};
+				}
+			}
 			@each $val in $allStyleList {
 				#{nth($val, 1)}: nth($val, 2);
 			}
 		}
 	} @else {
+		@if $isHasExtend {
+			// @error $extendClass;
+			@each $val in $extendClass {
+				@extend %#{$val};
+			}
+		}
 		@each $val in $allStyleList {
 			#{nth($val, 1)}: nth($val, 2);
 		}
 	}
+}
+
+///**【#fn20】
+// ==========================================
+// 获得map数据
+@function ivcss_get_mapData($num){
+	$mapData: $MAP-EMMET-CUS;
+	@if $num == 3 {
+		$mapData: $MAP-EMMET-OTHER;
+	} @else if $num == 2 {
+		$mapData: $MAP-EMMET-CON;
+	}
+	@return $mapData;
 }

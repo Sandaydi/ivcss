@@ -2,7 +2,6 @@
 @import '_fn_cus';
 @import '_fn_con';
 @import '_fn_oth';
-@import '_config';
 
 ///**【#fn17】
 //  * ivcss_put_core 核心函数
@@ -21,6 +20,7 @@
 	$value: quote($value);
 	$specialValueList: ('-', 'url', '(', ')', '`', "'", '"', ' ', '#', 'rgb');
 	$isCon: ivcss_fn_tof_isHasValue($value, $specialValueList);
+	
 	@if map-has-key(ivcss_get_mapData(3), $value) {
 		$resultMap: ivcss_query_other($value, ivcss_get_mapData(3), $resultMap);
 		@return $resultMap;
@@ -59,7 +59,7 @@
 // 如pd50-20-30 => padding: 50px 20px 30px
 @function ivcss_del_continuousValue($str) {
 	$units: $DEFAULT-UNITS;
-	// #fn16
+	// 【#fn16】
 	$list: ivcss_fn_strToListByIcon($str, '-');
 	// 判断是否需要加单位
 	$newStr: '';
@@ -77,18 +77,6 @@
 		// $list: set-nth($list, $i, $newVal);
 		$newStr: $newStr + ' ' + $newVal;
 	}
-	// fn02
+	// 【#fn02】
 	@return ivcss_fn_del_trim(unquote($newStr));
-}
-///**【#fn20】
-// ==========================================
-// 获得map数据
-@function ivcss_get_mapData($num){
-	$mapData: $MAP-EMMET-CUS;
-	@if $num == 3 {
-		$mapData: $MAP-EMMET-OTHER;
-	} @else if $num == 2 {
-		$mapData: $MAP-EMMET-CON;
-	}
-	@return $mapData;
 }

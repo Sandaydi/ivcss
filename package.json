@@ -5,14 +5,14 @@
   "scripts": {
     "start": "node-sass --watch test/test.scss test/test.css --output-style expanded"
   },
-	"repository": {
-	  "type": "git",
-	  "url": "https://github.com/sandaydi/ivcss"
-	},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sandaydi/ivcss"
+  },
   "keywords": [
-		"sass",
-		"scss"
-	],
+    "sass",
+    "scss"
+  ],
   "author": "sandaydi",
   "license": "MIT",
   "devDependencies": {

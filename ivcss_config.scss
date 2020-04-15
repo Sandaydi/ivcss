@@ -1,4 +1,14 @@
+// 这是配置继承类的调用
+// center是调用口令
+// ivcss-absolute-center自定义的继承类
+// 例如，你可以在ivcss.scss里看到我已经写了一个%ivcss-absolute-center;
+// 调用口令会优先其他即
+$map-extend-class-user: (
+	center: 'ivcss-absolute-center'
+);
 
+// 你希望ivcss自动给你加的单位
+$default-units-user: 'px';
 
 
 

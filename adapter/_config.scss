@@ -34,13 +34,23 @@ $ADD-UNITS-PROP-List: (margin, width, height, padding, font-size, border, border
 $ALLOW-MUL-VAULE-List: (margin, padding, border, border-radius) !default;
 
 // 默认加单位
-$DEFAULT-UNITS: 'px' !default;
+$default-units-user: 'px' !default;
+$DEFAULT-UNITS: $default-units-user;
 
-
-$MAP-EXTEND-CLASS: (
-	reset: 'ivcss-reset'
+// 继承类模板
+$MAP-EXTEND-CLASS-ADMIN: (
+	test-extend: 'ivcss-test-extend'
 );
 
+%ivcss-test-extend {
+	content: 'test-extend';
+	content: 'hello';
+	content: 'world';
+}
+
+$MAP-EXTEND-CLASS-USER: $map-extend-class-user !default;
+$MAP-EXTEND-CLASS: map-merge($MAP-EXTEND-CLASS-ADMIN, $MAP-EXTEND-CLASS-USER);
+// @error MAP-EXTEND-CLASS;
 
 
 
