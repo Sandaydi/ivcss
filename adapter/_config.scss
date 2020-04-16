@@ -1,4 +1,4 @@
-@import 'data/_core_data';
+@import 'data/core_data';
 @import '../ivcss_config';
 // /**
 //  * $MAP-EMMET-CUS 内置映射
@@ -26,7 +26,7 @@ $MAP-EMMET-OTHER: $map-emmet-other !default;
 ///**
 // * 需要自动判断是否有单位的属性列表
 // */
-$ADD-UNITS-PROP-List: (margin, width, height, padding, font-size, border, border-radius) !default;
+$ADD-UNITS-PROP-List: (margin, width, height, padding, font-size, border, border-radius, font-size) !default;
 
 ///**
 // * 允许同时设置多个方向的值

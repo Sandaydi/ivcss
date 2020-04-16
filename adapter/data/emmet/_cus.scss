@@ -529,11 +529,21 @@ $map-whiteSpace: (
 			pw: pre-wrap,
 			pl: pre-line
 		)
+	),
+	ws: (
+		prop: white-space,
+		defa: normal,
+		child: (
+			p: pre,
+			nw: nowrap,
+			pw: pre-wrap,
+			pl: pre-line
+		)
 	)
 );
 
 // /* ===[white-space-collapse]===*/
-$map-whiteSpace: (
+$map-whiteSpaceCollapse: (
 	whsc: (
 		prop: white-space-collapse,
 		defa: normal,

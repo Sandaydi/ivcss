@@ -1,18 +1,45 @@
-.test-1 {
-  content: 'test-extend';
-  content: 'hello';
-  content: 'world';
+.box {
+  width: 300px;
+  height: 500px;
+  display: inline-block;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
+  margin: 10px 20px;
+  position: relative;
 }
 
-.test-1, div .test-2 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-}
-
-div .test-2 {
+.book-image {
+  display: block;
+  width: 80%;
   height: auto;
+  margin: 10% auto 5%;
+}
+
+.book-name {
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 10px;
+}
+
+.process-bar {
+  width: auto;
+  height: 10px;
+  margin: 0 50px 0 10px;
+  background: #ccc;
+  border-radius: 5px;
+}
+
+.process-active {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  background: rgb(254, 189, 89);
+}
+
+.test {
+  background: url("test.png") no-repeat top center;
+  background: url('test.png') no-repeat top center;
 }

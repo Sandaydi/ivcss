@@ -29,10 +29,78 @@ npm i ivsss
 npm run start
 ```
 
+## 新增功能预览
+### 20-04-16
+- 新增自定义口令调用%extend配置
+使用方法：
+**ivcss_config.scss**里
+
+```scss
+$map-extend-class-user: (
+	ivcss-test-center: 'ivcss-absolute-center',
+	...: ....
+);
+```
+
+引入你自定义的继承类
+
+```scss
+%ivcss-absolute-center{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+```
+
+**使用：**
+
+```scss
+@include ivcss('[.box]', ivcss-test-center), tac, db, w500;
+```
+
+**运行结果：**
+```css
+.box {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	text-align: center;
+	display: block;
+	width: 500px;
+}
+```
+
+- 允许配置默认添加单位
+在ivcss_config.scss里
+```scss
+$default-units-user: rem;
+```
+
+**使用：**
+
+```scss
+@include ivcss('[.test-3]', w10, h300px, p20-50px-30);
+```
+
+**运行结果：**
+
+```css
+.test-3 {
+  width: 10rem;
+  height: 300px;
+  padding: 20rem 50px 30rem;
+}
+```
 
 ## 🎨 写法指南
 #### 通过 @include ivcss(); 进行调用
-- 传值时，可写参数也可不写参数
+- 传值时，可写单位也可不写
 
 ```scss
 // 如果我们要定义宽度20像素时，我们可以这样写

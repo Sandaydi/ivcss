@@ -1,6 +1,6 @@
-@import '_config';
-@import '_tool';
-@import '_fn_core';
+@import 'config';
+@import 'tool';
+@import 'fn_core';
 
 $units-list: $ADD-UNITS-PROP-List;
 $units: $DEFAULT-UNITS;
