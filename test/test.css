@@ -1,45 +1,4 @@
-.box {
-  width: 300px;
-  height: 500px;
-  display: inline-block;
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.1);
-  margin: 10px 20px;
-  position: relative;
-}
-
-.book-image {
-  display: block;
-  width: 80%;
-  height: auto;
-  margin: 10% auto 5%;
-}
-
-.book-name {
-  text-align: center;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  padding: 10px;
-}
-
-.process-bar {
-  width: auto;
-  height: 10px;
-  margin: 0 50px 0 10px;
-  background: #ccc;
-  border-radius: 5px;
-}
-
-.process-active {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: 5px;
-  background: rgb(254, 189, 89);
-}
-
 .test {
-  background: url("test.png") no-repeat top center;
-  background: url('test.png') no-repeat top center;
+  width: 20px;
+  height: 20px;
 }
