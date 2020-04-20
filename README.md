@@ -343,6 +343,34 @@ Testing insufficiently, unknown risk.
 ## ✨未来 future
 - 可能会做一个方便书写动画(animation)和媒体(medio)查询接口
 - 关于其他预编译器（Less, styuls），有时间会考虑。
+### 0420想法留存
+- 使ivcss可以支持嵌套传值，如：
+
+```scss
+@include ivcss('[.father]', w10, h300px, '>', '[.child-1]', w20, '+', '[.child-2]', h50, '||', '[.box]', w30
+	...
+);
+```
+
+可生成
+
+```scss
+.father {
+	width: 10px;
+	height: 300px;
+}
+.father .child-1{
+	width: 20px;
+}
+.father .child-2{
+	height: 50px;
+}
+.box {
+	width: 30px;
+}
+```
+
+具体规则还在思考中（或许参考emmet-html写法）。
 
 
 ## 🍦其他 Other
